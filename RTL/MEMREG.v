@@ -1,0 +1,28 @@
+module MEMORYREGISTER (
+input REGWRITEE , MEMTOREGE , MEMWRITEE ,
+input [31:0] ALUOUTPUTE , WRITEDATAE ,
+input [4:0] WRITEREGE ,
+input CLK , RST ,
+output reg REGWRITEM , MEMTOREGM , MEMWRITEM ,
+output reg [31:0] ALUOUTPUTM , WRITEDATAM ,
+output reg [4:0] WRITEREGM 
+);
+always @(posedge CLK or negedge RST) begin 
+if (RST) begin 
+REGWRITEM <= 1'b0 ;
+MEMTOREGM <= 1'b0 ;
+MEMWRITEM <= 1'b0 ;
+ALUOUTPUTM <= 32'b0 ;
+WRITEDATAM <= 32'b0 ; 
+WRITEREGM <= 5'b0 ;
+end
+else begin 
+REGWRITEM <= REGWRITEE ;
+MEMTOREGM <= MEMTOREGE ;
+MEMWRITEM <= MEMWRITEE ;
+ALUOUTPUTM <= ALUOUTPUTE ;
+WRITEDATAM <= WRITEDATAE ; 
+WRITEREGM <= WRITEREGE ;
+end
+end 
+endmodule 
